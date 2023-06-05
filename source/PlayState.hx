@@ -44,6 +44,7 @@ import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
 import utils.Rank;
 import Config;
+import utils.RestoredData;
 
 using StringTools;
 
@@ -51,6 +52,7 @@ class PlayState extends MusicBeatState
 {
 	public static var curStage:String = '';
 	public static var SONG:SwagSong;
+	var data:RestoredData = new RestoredData();//data part 2 in line 1014
 
 	public static var isStoryMode:Bool = false;
 	public static var storyWeek:Int = 0;
@@ -186,6 +188,9 @@ class PlayState extends MusicBeatState
 	{
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
+
+		osuScroll = data.getOsu();
+		midScroll = data.getMid();
 
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
@@ -1018,6 +1023,12 @@ class PlayState extends MusicBeatState
 		// doof.y = FlxG.height * 0.5;
 		doof.scrollFactor.set();
 		doof.finishThing = startCountdown;
+
+		Conductor.songPosition = -5000;
+		isDownScroll = data.getScroll();
+		cutsceneOp = data.getCutscenes();
+		noteSplashOp = data.getSploosh();
+		noteGlow = data.getGlow();
 
 		Conductor.songPosition = -5000;
 

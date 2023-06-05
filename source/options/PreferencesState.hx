@@ -7,6 +7,7 @@ import flixel.FlxG;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import Config;
+import utils.RestoredData;
 
 class PreferencesState extends MusicBeatState
 {
@@ -19,6 +20,7 @@ class PreferencesState extends MusicBeatState
 	var menuItems:Array<String> = ['downscroll', 'middlescroll', 'cutscenes', 'note splash', 'note glow', 'optimization', 'dfjk', 'change icons'];
 
 	var notice:FlxText;
+	var data:RestoredData = new RestoredData();
 
 	override public function create() 
 	{
@@ -47,6 +49,25 @@ class PreferencesState extends MusicBeatState
 			checkboxGroup.add(ch);
 			add(ch);
 
+			switch (menuItems[i]){
+				case "downscroll":
+					ch.change(data.getScroll());
+				case "cutscenes":
+					ch.change(data.getCutscenes());
+				case "note splash":
+					ch.change(data.getSploosh());
+				case "note glow":
+					ch.change(data.getGlow());
+				case "middlescroll":
+					ch.change(data.getMid());
+				case "optimization":
+					ch.change(data.getOsu());
+				case "dfjk":
+					ch.change(data.getDfjk());
+				case "change icons":
+					//do nothing.
+			}
+
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 		}
 
@@ -63,12 +84,17 @@ class PreferencesState extends MusicBeatState
 		add(noticebg);
 		add(notice);
 
+		#if mobileC
+		addVirtualPad(FULL, A_B);
+		#end
+
 		changeSelection();
 	}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+		data.flushData();
 
 		if (controls.RIGHT) {
 			MusicBeatState.camMove = floatToStringPrecision(Math.abs(MusicBeatState.camMove + 0.01), 2);
@@ -92,6 +118,24 @@ class PreferencesState extends MusicBeatState
 			var daSelected:String = menuItems[curSelected];
 
 			trace(curSelected);
+
+			switch (daSelected)
+			{
+				case "downscroll":
+					data.saveScroll(checkboxGroup.members[curSelected].change());
+				case "cutscenes":
+					data.saveCutscenes(checkboxGroup.members[curSelected].change());
+				case "note splash":
+					data.saveSploosh(checkboxGroup.members[curSelected].change());//wjat.
+				case "note glow":
+					data.saveGlow(checkboxGroup.members[curSelected].change());
+				case "middlescroll":
+					data.saveMid(checkboxGroup.members[curSelected].change());
+				case "optimization":
+					data.saveOsu(checkboxGroup.members[curSelected].change());
+				case "dfjk":
+					data.saveDfjk(checkboxGroup.members[curSelected].change());
+			}
 		}
 
 		if (controls.BACK) {
