@@ -16,6 +16,8 @@
 
 * Dialogue doesn't work on weeks besides week 6 for some reason.
 
+* Downscroll is broken lolz
+
 * Settings/Options is still somewhat broken. (Might remake it and use the system I use for FX Engine.)
 
 
