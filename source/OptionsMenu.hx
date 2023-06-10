@@ -16,7 +16,7 @@ class OptionsMenu extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = ['preferences', 'controls', 'about', 'discord', 'special thanks', 'exit'];
+	var menuItems:Array<String> = ['preferences', 'controls', 'about', 'special thanks', 'exit'];
 
 	var notice:FlxText;
 
