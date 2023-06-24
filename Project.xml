@@ -120,7 +120,7 @@
 	<!--In case you want to use the ui package-->
 	<haxelib name="flixel-ui" />
 	<haxelib name="faxe" if='switch'/>
-	<haxelib name="polymod"/>
+	<haxelib name= "polymod-enigma" rename="polymod" if="desktop" /> <!-- USE https://github.com/EnigmaEngine/polymod -->
 	<haxelib name="discord_rpc" if="desktop"/>
 	<haxelib name="extension-webm" unless="html5" />
 	<!-- <haxelib name="extension-webview" if="mobile"/> -->

@@ -63,15 +63,7 @@ class Main extends Sprite
 			gameHeight = Math.ceil(stageHeight / zoom);
 		}
 
-		#if !debug
 		initialState = TitleState;
-		#end
-
-		#if android
-		zoom = 1;
-		gameWidth = 1280;
-		gameHeight = 720;
-		#end//ldog is mad >:)
 
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
 

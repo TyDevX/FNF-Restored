@@ -1171,6 +1171,12 @@ class PlayState extends MusicBeatState
 							});
 						});
 					});					
+			}
+		}
+		else
+		{
+			switch (SONG.song.toLowerCase())
+			{
 				case 'senpai':
 					schoolIntro(doof);
 				case 'roses':
@@ -1182,14 +1188,6 @@ class PlayState extends MusicBeatState
 					startCountdown();	
 				default:
 					schoolIntro(doof);	
-			}
-		}
-		else
-		{
-			switch (SONG.song.toLowerCase())
-			{
-				default:
-					startCountdown();
 			}
 		}
 
